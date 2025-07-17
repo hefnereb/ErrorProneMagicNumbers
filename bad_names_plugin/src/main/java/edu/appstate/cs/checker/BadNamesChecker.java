@@ -23,7 +23,8 @@ import static com.google.errorprone.BugPattern.SeverityLevel.WARNING;
 public class BadNamesChecker extends BugChecker implements
         BugChecker.IdentifierTreeMatcher,
         BugChecker.MethodInvocationTreeMatcher,
-        BugChecker.MethodTreeMatcher {
+        BugChecker.MethodTreeMatcher,
+        BugChecker.IfTreeMatcher {
 
     @java.lang.Override
     public Description matchIdentifier(IdentifierTree identifierTree, VisitorState visitorState) {
@@ -31,6 +32,16 @@ public class BadNamesChecker extends BugChecker implements
         // or just declarations?
         Name identifier = identifierTree.getName();
         return checkName(identifierTree, identifier);
+    }
+
+    @Override
+    public Description matchIf(IfTree tree, VisitorState state) {
+        if (tree.getElseStatement() == null) {
+            return buildDescription(tree)
+                .setMessage("We found an if without an else")
+                .build();
+        }
+        return Description.NO_MATCH;
     }
 
     @Override
@@ -58,14 +69,16 @@ public class BadNamesChecker extends BugChecker implements
         // method to see if it is acceptable.
 
         // TODO: What needs to be done here to check the name of the method?
+        Name identifier = methodTree.getName();
+        return checkName(methodTree, identifier);
 
         // TODO: Remove this, if needed. This is just here because we need to return a Description.
-        return Description.NO_MATCH;
+        // return Description.NO_MATCH;
     }
 
     private Description checkName(Tree tree, Name identifier) {
         // TODO: What other names are a problem? Add checks for them here...
-        if (identifier.contentEquals("foo")) {
+        if (identifier.contentEquals("foo") || identifier.contentEquals("bar")) {
             return buildDescription(tree)
                     .setMessage(String.format("%s is a bad identifier name", identifier))
                     .build();
