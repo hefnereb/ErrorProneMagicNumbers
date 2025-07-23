@@ -46,7 +46,7 @@
             </path>
             <path>
               <groupId>edu.appstate.cs.checker</groupId>
-              <artifactId>bad-names-plugin</artifactId>
+              <artifactId>bad_names_plugin</artifactId>
               <version>1.0-SNAPSHOT</version>
             </path>
           </annotationProcessorPaths>

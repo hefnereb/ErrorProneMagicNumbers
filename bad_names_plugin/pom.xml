@@ -12,7 +12,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>bad-names-plugin</artifactId>
+  <artifactId>bad_names_plugin</artifactId>
 
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
