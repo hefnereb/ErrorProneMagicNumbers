@@ -2,7 +2,7 @@
 <module version="4">
   <component name="MavenAnnotationProcessors">
     <modules>
-      <module name="bad-names-plugin" />
+      <module name="magic-number-plugin" />
     </modules>
   </component>
 </module>
