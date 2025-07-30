@@ -2,6 +2,7 @@ package edu.appstate.cs.examples;
 
 public class CodeWithIf {
     public static void someMethod() {
+        int y = 1;
         if (true) {
             System.out.println("I'm here");
         }
