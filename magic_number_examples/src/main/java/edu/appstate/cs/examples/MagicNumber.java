@@ -4,15 +4,15 @@
 
  package edu.appstate.cs.examples;
 
- public class BadNames {
+ public class MagicNumber {
    public void foo(String s) {
      System.out.println(s);
    }
  
    public void thisMethodNameIsRidiculouslyLongAndShouldAlsoBeFlaggedByOurPluginBecauseItKeepsGoing() {
-     BadNames thisOtherNameIsWayTooLongAndShouldBeFlaggedByTHEPluginBecauseItIsOverFifty = new BadNames();
+     MagicNumber thisOtherNameIsWayTooLongAndShouldBeFlaggedByTHEPluginBecauseItIsOverFifty = new MagicNumber();
      thisOtherNameIsWayTooLongAndShouldBeFlaggedByTHEPluginBecauseItIsOverFifty.foo("bad name");
-     BadNames aaaaaaa = new BadNames();
+     MagicNumber aaaaaaa = new MagicNumber();
      aaaaaaa.foo("bad name");
    }
  
@@ -20,7 +20,11 @@
      String m = "This is a message";
      int d = 5;
      int dd = 1; 
-     if (d > 3)
+     if (dd > 2)
+    {
+      
+    }
+     if (d < 3)
      {
         System.out.println("d is greater than 3");
      }
@@ -33,8 +37,8 @@
         System.out.println("d is not greater than 3 and dd is not less than 2");
      }
 
-     BadNames b = new BadNames();
-     BadNames ccc = new BadNames();
+     MagicNumber b = new MagicNumber();
+     MagicNumber ccc = new MagicNumber();
      ccc.foo(m);
      b.foo(m);
    }

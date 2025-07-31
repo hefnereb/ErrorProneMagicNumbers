@@ -1,9 +1,9 @@
 package edu.appstate.cs.examples;
 
-public class CodeWithIf {
+public class BadCode {
     public static void someMethod() {
         int y = 1;
-        if (true) {
+        if (y == 25) {
             System.out.println("I'm here");
         }
 
