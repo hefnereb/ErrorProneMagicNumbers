@@ -35,8 +35,6 @@ public class MagicNumberChecker extends BugChecker implements BugChecker.Literal
 
     private static final Map<Double, Map<Kind, Integer>> numberContexts = new HashMap<>(); 
 
-    private static final Map<Kind, Integer> contextTotals = new HashMap<>(); 
-
     static {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.err.println("=== MagicNumberChecker Summary ===");
@@ -76,8 +74,6 @@ public class MagicNumberChecker extends BugChecker implements BugChecker.Literal
 
         numberContexts.computeIfAbsent(numericValue, k -> new HashMap<>())
             .merge(contextKind, 1, Integer::sum);
-
-        contextTotals.put(contextKind, contextTotals.getOrDefault(contextKind, 0) + 1);
 
         return buildDescription(literalTree)
             .setMessage("Magic number " + value + " detected in " + contextKind
