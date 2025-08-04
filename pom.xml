@@ -8,6 +8,7 @@
   <modules>
     <module>magic_number_plugin</module>
     <module>magic_number_examples</module>
+    <module>jedis</module>
   </modules>
 
   <packaging>pom</packaging>
