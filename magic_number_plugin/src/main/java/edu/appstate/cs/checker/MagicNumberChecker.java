@@ -18,13 +18,13 @@ import static com.google.errorprone.BugPattern.SeverityLevel.WARNING;
 /**
  * MagicNumberChecker: flags numeric literals (excluding common safe ones) used in
  * expressions like comparisons, arithmetic, conditionals, loops, or array accesses,
- * and suggests extracting them into named constants. It also aggregates usage
+ * and suggests extracting them into named finals. It also aggregates usage
  * statistics to help spot patterns.
  */
 @AutoService(BugChecker.class)
 @BugPattern(
     name = "MagicNumberChecker",
-    summary = "Magic number usage; extract numeric literals into named constants",
+    summary = "Magic number usage; extract numeric literals into named finals",
     severity = WARNING,
     linkType = CUSTOM,
     link = "https://github.com/hefnereb/ErrorProneMagicNumbers.git"
@@ -70,14 +70,16 @@ public class MagicNumberChecker extends BugChecker implements BugChecker.Literal
             return Description.NO_MATCH; 
         }
 
+        //increments numberCounts when a literal is found
         numberCounts.put(numericValue, numberCounts.getOrDefault(numericValue, 0) + 1);
 
+        //tracks how often the number appears in different contexts (like IF, PLUS, WHILE_LOOP, etc.).
         numberContexts.computeIfAbsent(numericValue, k -> new HashMap<>())
             .merge(contextKind, 1, Integer::sum);
 
         return buildDescription(literalTree)
             .setMessage("Magic number " + value + " detected in " + contextKind
-                + "; consider replacing with a descriptive constant")
+                + "; consider replacing with a descriptive final")
             .build();
     }
 
